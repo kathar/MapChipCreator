@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using KaLib.WinForm;
+using System.IO;
+
+using ka;
+using ka.WinForm;
 
 namespace MapChipCreator
 {
 	public class MccModel : KaModel
 	{
-		public Bitmap SampleBlock { get; private set; } 
+		public Bitmap SampleBlock { get; private set; }
+		public Bitmap SampleBlock_o { get; private set; } 
 
 		protected override void init()
 		{
@@ -23,6 +27,13 @@ namespace MapChipCreator
 				// error
 			}
 			SampleBlock = tmpImg;
-		}
+
+			tmpImg = null;
+			if ( !KaResource.get( out tmpImg, "SampleBlock_o" ) )
+			{
+				// error
+			}
+			SampleBlock_o = tmpImg;
+		 }
 	}
 }
