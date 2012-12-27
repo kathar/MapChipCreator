@@ -14,10 +14,10 @@ namespace MapChipCreator
 	{
 		private static readonly string title = "MapChipCreator";
 
-		private static readonly int margin = 32;
-		private static readonly int blockCols = 8;
-		private static readonly int blockRows = 8;
-		private static readonly int blockSize = 64;
+		private static readonly int Margin = 32;
+		private static readonly int BlockCols = 16;
+		private static readonly int BlockRows = 16;
+		private static readonly int BlockSize = 32;
 
 		public List<PictureBox> blocks { get; set; }
 	
@@ -35,15 +35,18 @@ namespace MapChipCreator
 			var m = model as MccModel;
 			blocks = new List<PictureBox>();
 
-			for ( var col = 0; col < blockCols; ++col )
+			for ( var col = 0; col < BlockCols; ++col )
 			{
-				for ( var row = 0; row < blockRows; ++row )
+				for ( var row = 0; row < BlockRows; ++row )
 				{
 					var pb = new PictureBox();
-					pb.Location = new Point( col * blockSize + margin, row * blockSize + margin );
-					pb.Size = new Size( blockSize, blockSize );
-					pb.Image = m.SampleBlock;
+					pb.Location = new Point(
+						col * BlockSize + Margin,
+						row * BlockSize + Margin );
+					pb.Size = new Size( BlockSize, BlockSize );
+					pb.BackgroundImage = m.BlockBgImg;
 					pb.SizeMode = PictureBoxSizeMode.Zoom;
+					pb.AllowDrop = true;
 					blocks.Add( pb );
 				}
 			}

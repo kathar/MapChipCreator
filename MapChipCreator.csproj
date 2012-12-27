@@ -83,10 +83,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="resource\img\SampleBlock.png" />
+    <EmbeddedResource Include="resource\img\BlockBgImg.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\img\SampleBlock_o.png" />
+    <None Include="resource\img\BlockOverImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

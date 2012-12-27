@@ -14,26 +14,26 @@ namespace MapChipCreator
 {
 	public class MccModel : KaModel
 	{
-		public Bitmap SampleBlock { get; private set; }
-		public Bitmap SampleBlock_o { get; private set; } 
+		public Bitmap BlockBgImg { get; private set; }
+		public Bitmap BlockOverImg { get; private set; } 
 
 		protected override void init()
 		{
 			base.init();
 
 			Bitmap tmpImg = null;
-			if ( !KaResource.get( out tmpImg, "SampleBlock" ) )
+			if ( !KaResource.get( out tmpImg, "BlockBgImg" ) )
 			{
 				// error
 			}
-			SampleBlock = tmpImg;
+			BlockBgImg = tmpImg;
 
 			tmpImg = null;
-			if ( !KaResource.get( out tmpImg, "SampleBlock_o" ) )
+			if ( !KaResource.get( out tmpImg, "BlockOverImg" ) )
 			{
 				// error
 			}
-			SampleBlock_o = tmpImg;
+			BlockOverImg = tmpImg;
 		 }
 	}
 }
