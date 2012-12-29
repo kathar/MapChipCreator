@@ -47,22 +47,25 @@
     <Compile Include="MapChipCreator.cs" />
     <Compile Include="MccController.cs" />
     <Compile Include="MccModel.cs" />
+    <Compile Include="MapChip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MccView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -73,6 +76,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KaLibCs\KaLibCsForGame\KaLibCsForGame.csproj">
+      <Project>{53ce333b-87a1-40eb-99e9-11336039c3e2}</Project>
+      <Name>KaLibCsForGame</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KaLibCs\KaLibCsWithWinForm\KaLibCsWithWinForm.csproj">
       <Project>{848e4d70-8d89-4249-a6c1-62edf595dc5b}</Project>
       <Name>KaLibCsWithWinForm</Name>
@@ -83,10 +90,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="resource\img\BlockBgImg.png" />
+    <None Include="resource\img\ChipEmptyImg.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\img\BlockOverImg.png" />
+    <None Include="resource\img\ChipOverImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

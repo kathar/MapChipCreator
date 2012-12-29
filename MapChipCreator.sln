@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaLibCs", "..\KaLibCs\KaLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaLibCsWithWinForm", "..\KaLibCs\KaLibCsWithWinForm\KaLibCsWithWinForm.csproj", "{848E4D70-8D89-4249-A6C1-62EDF595DC5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaLibCsForGame", "..\KaLibCs\KaLibCsForGame\KaLibCsForGame.csproj", "{53CE333B-87A1-40EB-99E9-11336039C3E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{848E4D70-8D89-4249-A6C1-62EDF595DC5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{848E4D70-8D89-4249-A6C1-62EDF595DC5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{848E4D70-8D89-4249-A6C1-62EDF595DC5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53CE333B-87A1-40EB-99E9-11336039C3E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53CE333B-87A1-40EB-99E9-11336039C3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53CE333B-87A1-40EB-99E9-11336039C3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53CE333B-87A1-40EB-99E9-11336039C3E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

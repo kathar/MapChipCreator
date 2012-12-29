@@ -63,9 +63,9 @@ namespace MapChipCreator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BlockBgImg {
+        internal static System.Drawing.Bitmap ChipEmptyImg {
             get {
-                object obj = ResourceManager.GetObject("BlockBgImg", resourceCulture);
+                object obj = ResourceManager.GetObject("ChipEmptyImg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace MapChipCreator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BlockOverImg {
+        internal static System.Drawing.Bitmap ChipOverImg {
             get {
-                object obj = ResourceManager.GetObject("BlockOverImg", resourceCulture);
+                object obj = ResourceManager.GetObject("ChipOverImg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

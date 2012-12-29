@@ -17,34 +17,35 @@ namespace MapChipCreator
 		{
 			base.init();
 
-			bindBlocks();
+			bindChips();
 		}
 
-		// ブロックにイベントを設定
-		private void bindBlocks()
+		// チップにイベントを設定
+		private void bindChips()
 		{
 			var m = model as MccModel;
 			var v = view as MccView;
 
-			var bgImg = m.BlockBgImg;
-			var overImg = m.BlockOverImg;
+			var bgImg = m.ChipEmptyImg;
+			var overImg = m.ChipOverImg;
 			Bitmap dropImg = null;
-			var blocks = v.blocks;
-			foreach ( var block in blocks )
+			var chips = v.chips;
+			foreach ( var chip in chips )
 			{
 				// マウスオーバーイベント
-				block.MouseEnter += ( s, e ) =>
+				chip.MouseEnter += ( s, e ) =>
 				{
-					block.Image = overImg;
+					chip.Image = overImg;
+					//v.detailChip = chip;
 				};
-				block.MouseLeave += ( s, e ) =>
+				chip.MouseLeave += ( s, e ) =>
 				{
-					block.Image = null;
+					chip.Image = null;
 				};
 
 				// D&D イベント
 				/// ドラッグオーバー
-				block.DragEnter += ( s, e ) =>
+				chip.DragEnter += ( s, e ) =>
 				{
 					var fileNames = e.Data.GetData( DataFormats.FileDrop ) as string[];
 
@@ -59,30 +60,39 @@ namespace MapChipCreator
 
 					// ドラッグ対象が1つで、画像ファイルの場合
 					e.Effect = DragDropEffects.All;
-					block.Image = overImg;
+					chip.Image = overImg;
 				};
 				/// ドラッグリーブ
-				block.DragLeave += ( s, e ) =>
+				chip.DragLeave += ( s, e ) =>
 				{
-					block.Image = null;
+					chip.Image = null;
 				};
 				/// ドロップ
-				block.DragDrop += ( s, e ) =>
+				chip.DragDrop += ( s, e ) =>
 				{
 					// サイズチェック
-					if( dropImg.Width != block.Width
-						|| dropImg.Height != block.Height )
+					/// チップサイズ以下のサイズなら OK
+					if( dropImg.Width > chip.Width
+						|| dropImg.Height > chip.Height )
+					{
+						return;
+					}
+					/// 縦 : 横 = 1 : 1 のみを許可
+					if ( dropImg.Width != dropImg.Height )
 					{
 						return;
 					}
 
-					block.BackgroundImage = dropImg;
+					chip.BackgroundImage = dropImg;
 				};
 				
 				// クリックイベント
-				block.Click += ( s, e ) =>
+				chip.Click += ( s, e ) =>
 				{
-					//v.mainForm.Text = block.Location.ToString();
+					var bitmap = chip.BackgroundImage as Bitmap;
+					//v.detailChip = new PictureBox();
+					//v.detailChip.Image = overImg;
+					v.detailChip.Image = bitmap;
 				};
 			}
 		}
