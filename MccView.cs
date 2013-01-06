@@ -2,18 +2,20 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+using ka;
 using ka.WinForm;
 
 namespace MapChipCreator
 {
 	public class MccView : KaView
 	{
-		private static readonly string title = "MapChipCreator";
+		public static readonly string title = "MapChipCreator";
 
-		private static readonly int Margin = 32;
-		private static readonly int ChipCols = 16;
-		private static readonly int ChipRows = 16;
-		private static readonly int ChipSize = 32;
+		public static readonly int Margin = 32;
+		public static readonly int ChipCols = 16;
+		public static readonly int ChipRows = 16;
+		public static readonly int ChipSize = 16;
+		public static readonly int DetailSizeRate = 4;
 
 		public List<MapChip> chips { get; set; }
 		public PictureBox detailChip { get; set; }
@@ -36,19 +38,23 @@ namespace MapChipCreator
 			var m = model as MccModel;
 			chips = new List<MapChip>();
 
+			var datMgr = new KaBmpDatMgr( m.ChipEmptyImg as Bitmap );
+			var img = datMgr.magnify( ChipSize / m.ChipEmptyImg.Width );
 			for ( var col = 0; col < ChipCols; ++col )
 			{
 				for ( var row = 0; row < ChipRows; ++row )
 				{
-					var pb = new MapChip();
-					pb.Location = new Point(
+					var chip = new MapChip();
+					chip.Location = new Point(
 						col * ChipSize + Margin,
 						row * ChipSize + Margin );
-					pb.Size = new Size( ChipSize, ChipSize );
-					pb.BackgroundImage = m.ChipEmptyImg;
-					pb.SizeMode = PictureBoxSizeMode.Zoom;
-					pb.AllowDrop = true;
-					chips.Add( pb );
+					chip.Size = new Size( ChipSize, ChipSize );
+					//chip.BackgroundImage = m.ChipEmptyImg;
+					chip.BackgroundImage = img;
+					chip.SizeMode = PictureBoxSizeMode.Zoom;
+					chip.BackgroundImageLayout = ImageLayout.Zoom;
+					chip.AllowDrop = true;
+					chips.Add( chip );
 				}
 			}
 
@@ -70,9 +76,13 @@ namespace MapChipCreator
 			detailChip = new MapChip();
 			var left = chipAreaR + Margin;
 			detailChip.Location = new Point( left, chipAreaTop );
-			detailChip.Size = new Size( ChipSize * 4, ChipSize * 4 );
-			detailChip.Image = m.ChipEmptyImg;
+			detailChip.Size = new Size( ChipSize * DetailSizeRate, ChipSize * DetailSizeRate );
+			//detailChip.Image = m.ChipEmptyImg;
+			//detailChip.Image = m.ChipEmptyImg.KaMagnify( DetailSizeRate );
+			var datMgr = new KaBmpDatMgr( m.ChipEmptyImg as Bitmap );
+			detailChip.Image = datMgr.magnify( DetailSizeRate );
 			detailChip.SizeMode = PictureBoxSizeMode.Zoom;
+			detailChip.BackgroundImageLayout = ImageLayout.Zoom;
 			mainForm.Controls.Add( detailChip );
 		}
 	}

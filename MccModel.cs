@@ -14,14 +14,15 @@ namespace MapChipCreator
 {
 	public class MccModel : KaModel
 	{
-		public Bitmap ChipEmptyImg { get; private set; }
-		public Bitmap ChipOverImg { get; private set; } 
+		public Image ChipEmptyImg { get; private set; }
+		public Image ChipOverImg { get; private set; }
+		public Image ChipSelectedImg { get; private set; }
 
 		protected override void init()
 		{
 			base.init();
 
-			Bitmap bmp = null;
+			Image bmp = null;
 			if ( !KaResource.get( out bmp, "ChipEmptyImg" ) )
 			{
 				// error
@@ -34,6 +35,13 @@ namespace MapChipCreator
 				// error
 			}
 			ChipOverImg = bmp;
+
+			bmp = null;
+			if ( !KaResource.get( out bmp, "ChipSelectedImg" ) )
+			{
+				// error
+			}
+			ChipSelectedImg = bmp;
 		 }
 	}
 }

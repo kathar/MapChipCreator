@@ -89,10 +89,8 @@ namespace MapChipCreator
 				// クリックイベント
 				chip.Click += ( s, e ) =>
 				{
-					var bitmap = chip.BackgroundImage as Bitmap;
-					//v.detailChip = new PictureBox();
-					//v.detailChip.Image = overImg;
-					v.detailChip.Image = bitmap;
+					var img = chip.BackgroundImage as Image;
+					v.detailChip.Image = img.KaMagnify( MccView.DetailSizeRate );
 				};
 			}
 		}

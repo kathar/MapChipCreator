@@ -17,7 +17,6 @@ namespace MapChipCreator
 		static void Main()
 		{
 			KaMvcMgr.Run();
-			var tmp = Properties.Resources.ResourceManager;
 		}
 	}
 }
