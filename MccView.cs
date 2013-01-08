@@ -14,7 +14,7 @@ namespace MapChipCreator
 		public static readonly int Margin = 32;
 		public static readonly int ChipCols = 16;
 		public static readonly int ChipRows = 16;
-		public static readonly int ChipSize = 16;
+		public static readonly int ChipSize = 32;
 		public static readonly int DetailSizeRate = 4;
 
 		public List<MapChip> chips { get; set; }
@@ -49,7 +49,6 @@ namespace MapChipCreator
 						col * ChipSize + Margin,
 						row * ChipSize + Margin );
 					chip.Size = new Size( ChipSize, ChipSize );
-					//chip.BackgroundImage = m.ChipEmptyImg;
 					chip.BackgroundImage = img;
 					chip.SizeMode = PictureBoxSizeMode.Zoom;
 					chip.BackgroundImageLayout = ImageLayout.Zoom;
@@ -75,11 +74,10 @@ namespace MapChipCreator
 
 			detailChip = new MapChip();
 			var left = chipAreaR + Margin;
+			var datMgr = new KaBmpDatMgr( m.ChipEmptyImg as Bitmap );
+
 			detailChip.Location = new Point( left, chipAreaTop );
 			detailChip.Size = new Size( ChipSize * DetailSizeRate, ChipSize * DetailSizeRate );
-			//detailChip.Image = m.ChipEmptyImg;
-			//detailChip.Image = m.ChipEmptyImg.KaMagnify( DetailSizeRate );
-			var datMgr = new KaBmpDatMgr( m.ChipEmptyImg as Bitmap );
 			detailChip.Image = datMgr.magnify( DetailSizeRate );
 			detailChip.SizeMode = PictureBoxSizeMode.Zoom;
 			detailChip.BackgroundImageLayout = ImageLayout.Zoom;

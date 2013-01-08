@@ -26,17 +26,19 @@ namespace MapChipCreator
 			var m = model as MccModel;
 			var v = view as MccView;
 
-			var bgImg = m.ChipEmptyImg;
-			var overImg = m.ChipOverImg;
+			var bgImgMgr = new KaBmpDatMgr( m.ChipEmptyImg as Bitmap );
+			var overImgMgr = new KaBmpDatMgr( m.ChipOverImg as Bitmap );
+
 			Bitmap dropImg = null;
+			
 			var chips = v.chips;
+
 			foreach ( var chip in chips )
 			{
 				// マウスオーバーイベント
 				chip.MouseEnter += ( s, e ) =>
 				{
-					chip.Image = overImg;
-					//v.detailChip = chip;
+					chip.Image = overImgMgr.magnify( MccView.ChipSize / m.ChipOverImg.Width );
 				};
 				chip.MouseLeave += ( s, e ) =>
 				{
@@ -60,7 +62,7 @@ namespace MapChipCreator
 
 					// ドラッグ対象が1つで、画像ファイルの場合
 					e.Effect = DragDropEffects.All;
-					chip.Image = overImg;
+					chip.Image = overImgMgr.magnify( MccView.ChipSize / m.ChipOverImg.Width );
 				};
 				/// ドラッグリーブ
 				chip.DragLeave += ( s, e ) =>
@@ -83,14 +85,15 @@ namespace MapChipCreator
 						return;
 					}
 
-					chip.BackgroundImage = dropImg;
+					var dropImgMgr = new KaBmpDatMgr( dropImg );
+					chip.BackgroundImage = dropImgMgr.magnify( MccView.ChipSize / dropImg.Width );
 				};
 				
 				// クリックイベント
 				chip.Click += ( s, e ) =>
 				{
-					var img = chip.BackgroundImage as Image;
-					v.detailChip.Image = img.KaMagnify( MccView.DetailSizeRate );
+					var mgr = new KaBmpDatMgr( chip.BackgroundImage as Bitmap );
+					v.detailChip.Image = mgr.magnify( MccView.DetailSizeRate );
 				};
 			}
 		}
